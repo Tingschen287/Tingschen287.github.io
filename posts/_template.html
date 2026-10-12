@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!--
+  通用内容页模板（文章 / 项目 / 分享都用这一份）
+  用法：
+  1. 复制本文件改名：文章放 posts/xxx.html，分享放 shares/xxx.html，项目放 projects/<名字>/index.html
+  2. 改下面标了「改这里」的地方：标题、类型、日期、标签、正文
+  3. 放在 projects/<名字>/index.html 时，把所有 "../" 改成 "../../"（样式和返回首页）
+  4. 打开根目录 index.html，在 posts 数组里加一行
+  以下划线开头的文件不会发布到线上，所以这个模板只在本地可见。
+-->
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>文章标题 · Margin</title><!-- 改这里 -->
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<div class="bg" aria-hidden="true"><div class="orb"></div><div class="orb"></div><div class="orb"></div><div class="orb"></div></div>
+
+<div class="navw"><nav class="nav glass">
+  <b>Margin</b>
+  <a class="back" href="../index.html">← 返回首页</a>
+  <button id="theme" type="button">明 / 暗</button>
+</nav></div>
+
+<div class="wrap page">
+  <article class="article glass">
+    <header class="head">
+      <span class="tag acc">文章</span><!-- 改这里：文章 / 项目 / 分享 -->
+      <h1>文章标题</h1><!-- 改这里 -->
+      <div class="meta"><span>2026-01-01</span><span>#标签</span></div><!-- 改这里 -->
+    </header>
+    <div class="prose">
+      <!-- 改这里：正文从这里开始 -->
+      <p>开头一段，说清楚这篇要讲什么。</p>
+      <h2>小标题</h2>
+      <p>正文段落。可以用 <a href="#">链接</a>、<code>行内代码</code>、列表、引用、图片。</p>
+      <ul><li>列表项一</li><li>列表项二</li></ul>
+      <blockquote>引用一句话。</blockquote>
+      <!-- 正文到这里结束 -->
+    </div>
+  </article>
+  <footer><span>© 2026 Margin</span><span><a href="../index.html">返回首页</a></span></footer>
+</div>
+
+<script>
+document.getElementById('theme').onclick=function(){var r=document.documentElement,d=r.dataset.theme?r.dataset.theme==='dark':matchMedia('(prefers-color-scheme: dark)').matches;r.dataset.theme=d?'light':'dark'};
+document.addEventListener('pointermove',function(e){var el=e.target.closest&&e.target.closest('.glass');if(!el)return;var b=el.getBoundingClientRect();el.style.setProperty('--x',(e.clientX-b.left)+'px');el.style.setProperty('--y',(e.clientY-b.top)+'px')});
+</script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Joy · Margin</title>
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<div class="bg" aria-hidden="true"><div class="orb"></div><div class="orb"></div><div class="orb"></div><div class="orb"></div></div>
+
+<div class="navw"><nav class="nav glass">
+  <b>Margin</b>
+  <a href="#feed" data-f="文章">文章</a><a href="#feed" data-f="项目">项目</a><a href="#feed" data-f="分享">分享</a><a href="#about">关于</a>
+  <button id="theme" type="button">明 / 暗</button>
+</nav></div>
+
+<div class="wrap">
+  <header class="hero" id="top">
+    <span class="hi glass"><i class="dot"></i>持续更新中</span>
+    <h1>记录，创造，<br><span>分享。</span></h1>
+    <p class="sub" style="max-width:30em;margin:22px auto 0;font-size:18px">这里放我写的文章、做的项目，和值得分享的东西。</p>
+    <div class="stats" id="stats"></div>
+    <label class="search glass"><span>⌕</span><input id="q" type="search" placeholder="搜索文章、项目、分享…"></label>
+  </header>
+
+  <section id="latest" style="padding-top:30px">
+    <a class="feat glass lift" id="feat" href="#"></a>
+  </section>
+
+  <section id="feed">
+    <h2>全部内容</h2><p class="sub">按时间排列，点一下筛选</p>
+    <div class="seg glass" id="seg" style="--n:4">
+      <i class="thumb"></i>
+      <button class="on" type="button">全部</button><button type="button">文章</button><button type="button">项目</button><button type="button">分享</button>
+    </div>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <section id="about">
+    <div class="about glass">
+      <p>这是我随手记录和分享的地方。我是<b>Joy</b>，在这里写点东西、做点小项目。欢迎来逛逛，也欢迎来聊聊。</p>
+      <div class="links"><a class="btn glass tint" href="mailto:tingschen287@gmail.com">发邮件给我</a><a class="btn glass" href="https://github.com/Tingschen287" target="_blank" rel="noopener">GitHub</a></div>
+    </div>
+    <footer><span>© 2026 Margin</span><span><a href="#top">回到顶部 ↑</a></span></footer>
+  </section>
+</div>
+
+<script>
+// ====== 在这里添加内容：每条一行，type 只能是 文章 / 项目 / 分享 ======
+var posts=[
+ {type:'文章',title:'示例文章：我是怎么搭起这个小站的',desc:'记录用 GitHub Pages 搭建个人网站的过程和踩过的坑。',date:'2026-10-08',url:'posts/hello.html',tags:['建站']},
+ {type:'项目',title:'示例项目：一个交互小工具',desc:'用纯 HTML 做的小玩意，打开就能用，不需要安装任何东西。',date:'2026-10-03',url:'projects/tool/',tags:['HTML','工具']},
+ {type:'分享',title:'示例分享：最近常用的工具清单',desc:'整理了几个提高效率的小工具，附上我的使用感受。',date:'2026-09-27',url:'shares/tools.html',tags:['清单']}
+];
+// ====== 以下无需修改 ======
+posts.sort(function(a,b){return b.date.localeCompare(a.date)});
+var types=['全部','文章','项目','分享'],state={t:'全部',q:''};
+var grid=document.getElementById('grid'),seg=document.getElementById('seg'),bs=seg.querySelectorAll('button');
+function card(p){return '<a class="w glass lift" href="'+p.url+'"><span class="tag">'+p.type+'</span><h3>'+p.title+'</h3><p>'+p.desc+'</p><div class="meta"><span>'+p.date+'</span><span>'+(p.tags||[]).map(function(t){return '#'+t}).join(' ')+'</span></div></a>'}
+function render(){
+  var q=state.q.toLowerCase();
+  var f=posts.filter(function(p){return (state.t==='全部'||p.type===state.t)&&(!q||(p.title+p.desc+(p.tags||[]).join(' ')).toLowerCase().indexOf(q)>-1)});
+  grid.innerHTML=f.length?f.map(card).join(''):'<p class="empty">没有找到相关内容</p>';
+}
+function setT(t){var i=types.indexOf(t);state.t=t;seg.style.setProperty('--i',i);bs.forEach(function(b,j){b.classList.toggle('on',i===j)});render()}
+bs.forEach(function(b,i){b.onclick=function(){setT(types[i])}});
+document.querySelectorAll('.nav a[data-f]').forEach(function(a){a.addEventListener('click',function(){setT(a.dataset.f)})});
+document.getElementById('q').addEventListener('input',function(e){state.q=e.target.value;render()});
+var n=function(t){return posts.filter(function(p){return p.type===t}).length};
+document.getElementById('stats').innerHTML='<b>'+n('文章')+'</b> 篇文章 · <b>'+n('项目')+'</b> 个项目 · <b>'+n('分享')+'</b> 条分享';
+var p0=posts[0],ft=document.getElementById('feat');ft.href=p0.url;
+ft.innerHTML='<div><span class="tag acc">最新 · '+p0.type+'</span><h2>'+p0.title+'</h2><p>'+p0.desc+'</p><span class="go">阅读 →</span></div><div class="cover">✦</div>';
+render();
+document.getElementById('theme').onclick=function(){var r=document.documentElement,d=r.dataset.theme?r.dataset.theme==='dark':matchMedia('(prefers-color-scheme: dark)').matches;r.dataset.theme=d?'light':'dark'};
+document.addEventListener('pointermove',function(e){var el=e.target.closest&&e.target.closest('.glass');if(!el)return;var b=el.getBoundingClientRect();el.style.setProperty('--x',(e.clientX-b.left)+'px');el.style.setProperty('--y',(e.clientY-b.top)+'px')});
+</script>
+</body>
+</html>

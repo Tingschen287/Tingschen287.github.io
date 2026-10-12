@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>示例项目：一个交互小工具 · Margin</title>
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<div class="bg" aria-hidden="true"><div class="orb"></div><div class="orb"></div><div class="orb"></div><div class="orb"></div></div>
+
+<div class="navw"><nav class="nav glass">
+  <b>Margin</b>
+  <a class="back" href="../../index.html">← 返回首页</a>
+  <button id="theme" type="button">明 / 暗</button>
+</nav></div>
+
+<div class="wrap page">
+  <article class="article glass">
+    <header class="head">
+      <span class="tag acc">项目</span>
+      <h1>示例项目：一个交互小工具</h1>
+      <div class="meta"><span>2026-10-03</span><span>#HTML #工具</span></div>
+    </header>
+    <div class="prose">
+      <p>这是一个示例项目：纯 HTML 写的字数统计器，打开就能用，不用装任何东西。在下面的框里输入或粘贴文字试试。</p>
+      <div class="tool glass"><textarea id="txt" placeholder="在这里输入或粘贴文字…"></textarea></div>
+      <div class="nums">
+        <div class="glass"><b id="n-all">0</b><span>总字符</span></div>
+        <div class="glass"><b id="n-cn">0</b><span>中文字</span></div>
+        <div class="glass"><b id="n-en">0</b><span>英文单词</span></div>
+        <div class="glass"><b id="n-min">0</b><span>阅读分钟</span></div>
+      </div>
+      <h2>实现思路</h2>
+      <p>监听输入框的 <code>input</code> 事件，用正则分别数中文字和英文单词。阅读时间按每分钟 400 个中文字或 200 个英文单词估算。</p>
+      <p>整个项目就是一个 HTML 文件，样式沿用全站的 <code>site.css</code>。</p>
+    </div>
+  </article>
+  <footer><span>© 2026 Margin</span><span><a href="../../index.html">返回首页</a></span></footer>
+</div>
+
+<script>
+document.getElementById('theme').onclick=function(){var r=document.documentElement,d=r.dataset.theme?r.dataset.theme==='dark':matchMedia('(prefers-color-scheme: dark)').matches;r.dataset.theme=d?'light':'dark'};
+document.addEventListener('pointermove',function(e){var el=e.target.closest&&e.target.closest('.glass');if(!el)return;var b=el.getBoundingClientRect();el.style.setProperty('--x',(e.clientX-b.left)+'px');el.style.setProperty('--y',(e.clientY-b.top)+'px')});
+var tx=document.getElementById('txt');
+tx.addEventListener('input',function(){var v=tx.value,cn=(v.match(/[\u4e00-\u9fff]/g)||[]).length,en=(v.match(/[A-Za-z]+(?:'[A-Za-z]+)?/g)||[]).length;
+document.getElementById('n-all').textContent=v.replace(/\s/g,'').length;document.getElementById('n-cn').textContent=cn;document.getElementById('n-en').textContent=en;
+document.getElementById('n-min').textContent=v.trim()?Math.max(1,Math.ceil(cn/400+en/200)):0});
+</script>
+</body>
+</html>
