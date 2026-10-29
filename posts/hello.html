@@ -2,51 +2,14 @@
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>示例文章：我是怎么搭起这个小站的 · Margin</title>
-<link rel="stylesheet" href="../assets/site.css">
-<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch(e){}</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>已搬家 · Margin</title>
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://tingschen.top/posts/hello">
+<meta http-equiv="refresh" content="0; url=https://tingschen.top/posts/hello">
+<script>location.replace("https://tingschen.top/posts/hello" + location.search + location.hash)</script>
 </head>
-<body>
-<div class="bg" aria-hidden="true"><div class="orb"></div><div class="orb"></div><div class="orb"></div><div class="orb"></div></div>
-
-<div class="navw"><nav class="nav glass">
-  <b>Margin</b>
-  <a class="back" href="../index.html">← 返回首页</a>
-  <button id="theme" type="button" title="外观：跟随系统，点击切换" aria-label="外观：跟随系统，点击切换"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg></button>
-</nav></div>
-
-<div class="wrap page">
-  <article class="article glass">
-    <header class="head">
-      <span class="tag acc">文章</span>
-      <h1>示例文章：我是怎么搭起这个小站的</h1>
-      <div class="meta"><span>2026-10-08</span><span>#建站</span></div>
-    </header>
-    <div class="prose">
-      <p>这是一篇示例文章，用来展示内容页的样子。想换成自己的内容，复制 <code>posts/_template.html</code> 改一改就行。</p>
-      <h2>为什么用 GitHub Pages</h2>
-      <p>想要一个能长期放东西的地方，又不想维护服务器。GitHub Pages 免费、稳定，把 HTML 文件推上去就能访问。</p>
-      <ul>
-        <li>纯静态：没有后端，也没有数据库</li>
-        <li>不用构建：写好的 HTML 直接发布</li>
-        <li>有版本记录：每次改动都在 git 里</li>
-      </ul>
-      <h2>整站怎么组织</h2>
-      <p>首页 <code>index.html</code> 里有一个内容清单，每条内容占一行。新增文章就是新建一个页面，再往清单里加一行：</p>
-      <pre><code>{type:'文章', title:'标题', desc:'一句话简介', date:'2026-10-08', url:'posts/hello.html', tags:['建站']}</code></pre>
-      <p>所有页面共用一份样式 <code>assets/site.css</code>，改一处全站生效。</p>
-      <h2>踩过的坑</h2>
-      <blockquote>页面之间要用相对路径引用样式，不要以 <code>/</code> 开头，否则换个托管位置样式就丢了。</blockquote>
-      <p>还有一点：以下划线开头的文件不会发布出去，模板文件正好利用这一点，只在本地可见。</p>
-    </div>
-  </article>
-  <footer><span>© 2026 Margin</span><span><a href="../index.html">返回首页</a></span></footer>
-</div>
-
-<script>
-(function(){var r=document.documentElement,b=document.getElementById('theme'),ms=['auto','light','dark'],lb={auto:'跟随系统',light:'浅色',dark:'深色'},ic={auto:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg>',light:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>',dark:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>'};function cur(){return r.dataset.theme||'auto'}function set(m,save){if(m==='auto')delete r.dataset.theme;else r.dataset.theme=m;b.innerHTML=ic[m];b.title='外观：'+lb[m]+'，点击切换';b.setAttribute('aria-label',b.title);if(save)try{m==='auto'?localStorage.removeItem('theme'):localStorage.setItem('theme',m)}catch(e){}}set(cur());b.onclick=function(){set(ms[(ms.indexOf(cur())+1)%3],1)}})();
-document.addEventListener('pointermove',function(e){var el=e.target.closest&&e.target.closest('.glass');if(!el)return;var b=el.getBoundingClientRect();el.style.setProperty('--x',(e.clientX-b.left)+'px');el.style.setProperty('--y',(e.clientY-b.top)+'px')});
-</script>
+<body style="font-family:-apple-system,BlinkMacSystemFont,'PingFang SC',sans-serif;text-align:center;padding:80px 20px">
+<p>本站已搬到 <a href="https://tingschen.top/posts/hello">https://tingschen.top/posts/hello</a>，正在跳转…</p>
 </body>
 </html>
